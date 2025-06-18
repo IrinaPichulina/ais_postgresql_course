@@ -1,0 +1,60 @@
+---------------------------------------------------------
+-- Задачи --
+---------------------------------------------------------
+
+-- 1. Найдите сотрудников, чьё имя начинается на 'A' и отсортируйте их по фамилии по возрастанию.
+SELECT * FROM hr.employees
+WHERE first_name LIKE 'A%'
+ORDER BY last_name ASC;
+
+-- 2. Покажите сотрудников, у которых зарплата больше 9000, отсортируйте по зарплате по убыванию.
+SELECT first_name, last_name, salary 
+FROM hr.employees
+where salary > 9000
+ORDER BY salary DESC;
+
+-- 3. Найдите всех сотрудников, у которых фамилия содержит 'ov', отсортируйте по имени.
+SELECT first_name, last_name 
+FROM hr.employees
+where last_name LIKE '%o%'
+ORDER BY first_name ASC;
+
+-- 4. Выведите сотрудников с id от 100 до 120 включительно, отсортируйте по ID.
+SELECT first_name, last_name, employee_id 
+FROM hr.employees
+where employee_id between 100 and 120
+ORDER BY employee_id ASC;
+
+-- 5. Покажите сотрудников, у которых номер телефона начинается на '515'.
+SELECT first_name, last_name, phone_number 
+FROM hr.employees
+where phone_number LIKE '515%';
+
+
+-- 6. Соберите полное имя сотрудника (first_name и last_name через пробел) и выведите его вместе с email.
+SELECT 
+  CONCAT(first_name, ' ', last_name) AS full_name,
+  email
+FROM hr.employees;
+
+-- 7. Покажите сотрудников, не работающих в департаментах 3, 7 и 10, и отсортируйте их по имени.
+SELECT first_name, last_name, department_id 
+FROM hr.employees
+where department_id NOT IN (3, 7, 10)
+ORDER BY first_name asc;
+
+-- 8. Найдите сотрудников, у которых фамилия длиной более 7 символов, отсортируйте по фамилии.
+SELECT first_name, last_name 
+FROM hr.employees
+WHERE LENGTH(last_name) > 7
+ORDER BY last_name asc;
+
+-- 9. Покажите всех сотрудников, чьё имя не содержит букву 'e'.
+SELECT first_name, last_name 
+FROM hr.employees
+where first_name not LIKE '%e%';
+
+-- 10. Выведите строку вида 'Фамилия, Имя (email)' и отсортируйте по фамилии.
+SELECT last_name || ',' || ' ' || first_name || '(' || email || ')'
+FROM hr.employees
+ORDER BY last_name asc;
